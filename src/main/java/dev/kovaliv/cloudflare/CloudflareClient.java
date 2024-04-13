@@ -1,9 +1,10 @@
 package dev.kovaliv.cloudflare;
 
 import com.google.gson.Gson;
-import dev.kovaliv.cloudflare.dtos.CloudflareImageRequest;
-import dev.kovaliv.cloudflare.dtos.CloudflareTextRequest;
-import dev.kovaliv.cloudflare.dtos.CloudflareTextResponse;
+import dev.kovaliv.cloudflare.dtos.*;
+import dev.kovaliv.cloudflare.models.TextModels;
+import dev.kovaliv.cloudflare.models.TextToImageModels;
+import dev.kovaliv.cloudflare.models.TranslationModels;
 import org.apache.hc.client5.http.HttpResponseException;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -32,6 +33,18 @@ public class CloudflareClient {
     public CloudflareClient(String accountId, String authToken) {
         this.accountId = accountId;
         this.authToken = authToken;
+    }
+
+    public CloudflareTextResponse generate(CloudflareTextRequest request, TextModels model) {
+        return generate(request, model.getLabel());
+    }
+
+    public File generate(CloudflareImageRequest request, TextToImageModels model) {
+        return generate(request, model.getLabel());
+    }
+
+    public CloudflareTranslateResponse generate(CloudflareTranslateRequest request, TranslationModels model) {
+        return generate(request, model.getLabel());
     }
 
     public CloudflareTextResponse generate(CloudflareTextRequest request, String model) {
@@ -93,8 +106,38 @@ public class CloudflareClient {
         return responseImage;
     }
 
+    public CloudflareTranslateResponse generate(CloudflareTranslateRequest request, String model) {
+        boolean retry = true;
+        String requestUrl = cloudflareApiBaseUrl + "/accounts/" + accountId + "/ai/run/" + model;
+        ClassicHttpRequest httpRequest = ClassicRequestBuilder.post(requestUrl)
+                .addHeader("Authorization", "Bearer " + authToken)
+                .addHeader("Accept", APPLICATION_JSON.getMimeType())
+                .addHeader("Content-Type", APPLICATION_JSON.getMimeType())
+                .setEntity(new StringEntity(new Gson().toJson(request), APPLICATION_JSON))
+                .build();
+
+        CloseableHttpResponse response;
+        String responseString = "";
+        while (retry) {
+            retry = false;
+            try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+                response = httpClient.execute(httpRequest);
+                responseString = EntityUtils.toString(response.getEntity(), UTF_8.name());
+            } catch (HttpResponseException e) {
+                retry = true;
+            } catch (IOException | ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return new Gson().fromJson(responseString, CloudflareTranslateResponse.class);
+    }
+
     private File downloadImage(InputStream stream) throws IOException {
         BufferedImage image = ImageIO.read(stream);
+        File theDir = new File("images/");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
         String tmpFilename = "images/" + new Random().nextInt(1000000, 10000000) + ".png";
         File outputfile = new File(tmpFilename);
         ImageIO.write(image, "png", outputfile);

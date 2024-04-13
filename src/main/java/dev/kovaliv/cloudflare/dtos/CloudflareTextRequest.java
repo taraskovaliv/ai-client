@@ -1,5 +1,6 @@
 package dev.kovaliv.cloudflare.dtos;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 @Getter
@@ -8,7 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CloudflareTextRequest {
-    private int max_tokens = 256;
+    @SerializedName("max_tokens")
+    private int maxTokens = 256;
     private String prompt;
     private boolean raw = false;
     private boolean stream = false;
