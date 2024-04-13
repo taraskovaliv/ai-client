@@ -17,9 +17,8 @@
 
     <licenses>
         <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
-            <!--TODO read about licences and choose-->
+            <name>MIT License</name>
+            <url>https://github.com/taraskovaliv/ai-client/blob/master/LICENSE.md</url>
         </license>
     </licenses>
 
