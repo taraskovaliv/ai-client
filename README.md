@@ -8,9 +8,11 @@ to consume Cloudflare's latest and greatest.
 ![GitHub License](https://img.shields.io/github/license/taraskovaliv/ai-client)
 
 # Supported features
-* [x] [Text Generation](https://developers.cloudflare.com/workers-ai/models/text-generation/)
-* [x] [Text-to-Image](https://developers.cloudflare.com/workers-ai/models/text-to-image/)
-* [x] [Translation](https://developers.cloudflare.com/workers-ai/models/translation/)
+* [x] [Text Generation](https://developers.cloudflare.com/workers-ai/models/#text-generation)
+* [x] [Text-to-Image](https://developers.cloudflare.com/workers-ai/models/#text-to-image)
+* [x] [Translation](https://developers.cloudflare.com/workers-ai/models/#translation)
+* [x] [Summarization](https://developers.cloudflare.com/workers-ai/models/#summarization)
+* [x] [Speech-to-Text](https://developers.cloudflare.com/workers-ai/models/#automatic-speech-recognition)
 
 # Table of Contents
 
@@ -66,6 +68,22 @@ String text = "Hello, how are you?";
 CloudflareTranslationRequest request = new CloudflareTranslationRequest(text, "en", "es");
 CloudflareTranslationResponse response = client.generate(request, TranslationModels.M2M_100_1_2B);
 System.out.println(response.getResult().getTranslatedText());
+```
+
+## Summarization
+
+```Java
+String text = "Big text";
+CloudflareSummarizationRequest request = new CloudflareSummarizationRequest(text);
+CloudflareSummarizationResponse response = client.generate(request, SummarizationModels.BART_LARGE_CNN);
+System.out.println(response.getResult().getSummary());
+```
+
+## Speech-to-Text
+
+```Java
+CloudflareSpeechRecognitionResponse response = client.generate(new File("audio.ogg"), SpeechRecognitionModels.WHISPER);
+System.out.println(response.getResult().getText());
 ```
 
 # Contributing

@@ -4,29 +4,23 @@ import com.google.gson.Gson;
 import dev.kovaliv.cloudflare.dtos.*;
 import dev.kovaliv.cloudflare.exception.CloudflareIllegalRequestException;
 import dev.kovaliv.cloudflare.exception.CloudflareRequestException;
-import dev.kovaliv.cloudflare.models.SummarizationModels;
-import dev.kovaliv.cloudflare.models.TextModels;
-import dev.kovaliv.cloudflare.models.TextToImageModels;
-import dev.kovaliv.cloudflare.models.TranslationModels;
+import dev.kovaliv.cloudflare.models.*;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.http.ClassicHttpRequest;
-import org.apache.hc.core5.http.ClassicHttpResponse;
-import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.ParseException;
+import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.io.entity.FileEntity;
 import org.apache.hc.core5.http.io.support.ClassicRequestBuilder;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.hc.core5.http.ContentType.APPLICATION_JSON;
+import static org.apache.hc.core5.http.ContentType.APPLICATION_OCTET_STREAM;
 
 public class CloudflareClient {
     private static final String cloudflareApiBaseUrl = "https://api.cloudflare.com/client/v4";
@@ -54,9 +48,19 @@ public class CloudflareClient {
         return generate(request, model.getLabel());
     }
 
+    public CloudflareSpeechRecognitionResponse generate(File file, SpeechRecognitionModels model) throws CloudflareRequestException {
+        ClassicHttpRequest httpRequest = getBaseRequestBuilder(file, model.getLabel()).build();
+
+        try (CloseableHttpResponse response = executeRequest(httpRequest)) {
+            return parseResponse(response, CloudflareSpeechRecognitionResponse.class);
+        } catch (IOException e) {
+            throw new CloudflareRequestException(e.getMessage(), e);
+        }
+    }
+
     public CloudflareTextResponse generate(CloudflareTextRequest request, String model) throws CloudflareRequestException {
         ClassicHttpRequest httpRequest = getBaseRequestBuilder(request, model)
-                .setEntity(new StringEntity(new Gson().toJson(request), APPLICATION_JSON))
+                .addHeader("Accept", APPLICATION_JSON.getMimeType())
                 .build();
 
         try (CloseableHttpResponse response = executeRequest(httpRequest)) {
@@ -78,7 +82,7 @@ public class CloudflareClient {
 
     public CloudflareTranslateResponse generate(CloudflareTranslateRequest request, String model) throws CloudflareRequestException {
         ClassicHttpRequest httpRequest = getBaseRequestBuilder(request, model)
-                .setEntity(new StringEntity(new Gson().toJson(request), APPLICATION_JSON))
+                .addHeader("Accept", APPLICATION_JSON.getMimeType())
                 .build();
 
         try (CloseableHttpResponse response = executeRequest(httpRequest)) {
@@ -90,7 +94,7 @@ public class CloudflareClient {
 
     public CloudflareSummarizationResponse generate(CloudflareSummarizationRequest request, String model) throws CloudflareRequestException {
         ClassicHttpRequest httpRequest = getBaseRequestBuilder(request, model)
-                .setEntity(new StringEntity(new Gson().toJson(request), APPLICATION_JSON))
+                .addHeader("Accept", APPLICATION_JSON.getMimeType())
                 .build();
 
         try (CloseableHttpResponse response = executeRequest(httpRequest)) {
@@ -113,7 +117,13 @@ public class CloudflareClient {
         return ClassicRequestBuilder.post(getRequestUrl(model))
                 .addHeader("Authorization", "Bearer " + authToken)
                 .addHeader("Content-Type", APPLICATION_JSON.getMimeType())
-                .setEntity(new StringEntity(new Gson().toJson(request), APPLICATION_JSON));
+                .setEntity(new Gson().toJson(request), APPLICATION_JSON);
+    }
+
+    private ClassicRequestBuilder getBaseRequestBuilder(File file, String model) {
+        return ClassicRequestBuilder.post(getRequestUrl(model))
+                .addHeader("Authorization", "Bearer " + authToken)
+                .setEntity(new FileEntity(file, APPLICATION_OCTET_STREAM));
     }
 
     private void validateRequest(CloudflareAbstractRequest request) {
