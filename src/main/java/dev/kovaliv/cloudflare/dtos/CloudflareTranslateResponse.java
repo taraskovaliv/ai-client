@@ -12,10 +12,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTranslateResponse {
+public class CloudflareTranslateResponse extends CloudflareAbstractResponse {
     private Result result;
-    private boolean success;
-    private List<Error> errors;
 
     @Getter
     @Setter
@@ -24,14 +22,5 @@ public class CloudflareTranslateResponse {
     public static class Result {
         @SerializedName("translated_text")
         private String translatedText;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Error {
-        private int code;
-        private String message;
     }
 }

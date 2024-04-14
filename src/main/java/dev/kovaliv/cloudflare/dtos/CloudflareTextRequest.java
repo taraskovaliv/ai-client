@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTextRequest {
+public class CloudflareTextRequest extends CloudflareAbstractRequest {
     @SerializedName("max_tokens")
     private int maxTokens = 256;
     private String prompt;

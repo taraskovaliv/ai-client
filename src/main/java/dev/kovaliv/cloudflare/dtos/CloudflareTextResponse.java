@@ -11,10 +11,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTextResponse {
+public class CloudflareTextResponse extends CloudflareAbstractResponse {
     private Result result;
-    private boolean success;
-    private List<Error> errors;
 
     @Getter
     @Setter
@@ -22,14 +20,5 @@ public class CloudflareTextResponse {
     @AllArgsConstructor
     public static class Result {
         private String response;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Error {
-        private int code;
-        private String message;
     }
 }

@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareImageRequest {
+public class CloudflareImageRequest extends CloudflareAbstractRequest {
     private String prompt;
     @SerializedName("num_steps")
     private int numSteps = 20;

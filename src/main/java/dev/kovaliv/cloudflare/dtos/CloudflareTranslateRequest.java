@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTranslateRequest {
+public class CloudflareTranslateRequest extends CloudflareAbstractRequest {
     private String text;
     @SerializedName("source_lang")
     private String sourceLang = "en";

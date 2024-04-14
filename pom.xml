@@ -6,7 +6,7 @@
 
     <groupId>dev.kovaliv.cloudflare</groupId>
     <artifactId>ai-client</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <url>https://github.com/taraskovaliv/ai-client</url>
     <description>A Java client for the Cloudflare Workers AI REST API</description>
     <scm>
