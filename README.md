@@ -28,7 +28,7 @@ Add dependency to your `pom.xml` file:
 <dependency>
     <groupId>dev.kovaliv.cloudflare</groupId>
     <artifactId>ai-client</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
