@@ -48,11 +48,49 @@ public class CloudflareClient {
         return generate(request, model.getLabel());
     }
 
+    public CloudflareTextEmbeddingsResponse generate(CloudflareTextEmbeddingsRequest request, TextEmbeddingsModels model) throws CloudflareRequestException {
+        return generate(request, model.getLabel());
+    }
+
+    public CloudflareTextEmbeddingsResponse generate(CloudflareTextEmbeddingsMultiRequest request, TextEmbeddingsModels model) throws CloudflareRequestException {
+        return generate(request, model.getLabel());
+    }
+
     public CloudflareSpeechRecognitionResponse generate(File file, SpeechRecognitionModels model) throws CloudflareRequestException {
         ClassicHttpRequest httpRequest = getBaseRequestBuilder(file, model.getLabel()).build();
 
         try (CloseableHttpResponse response = executeRequest(httpRequest)) {
             return parseResponse(response, CloudflareSpeechRecognitionResponse.class);
+        } catch (IOException e) {
+            throw new CloudflareRequestException(e.getMessage(), e);
+        }
+    }
+
+    public CloudflareImageClassificationResponse generate(File file, ImageClassificationModels model) throws CloudflareRequestException {
+        ClassicHttpRequest httpRequest = getBaseRequestBuilder(file, model.getLabel()).build();
+
+        try (CloseableHttpResponse response = executeRequest(httpRequest)) {
+            return parseResponse(response, CloudflareImageClassificationResponse.class);
+        } catch (IOException e) {
+            throw new CloudflareRequestException(e.getMessage(), e);
+        }
+    }
+
+    public CloudflareImageToTextResponse generate(File file, ImageToTextModels model) throws CloudflareRequestException {
+        ClassicHttpRequest httpRequest = getBaseRequestBuilder(file, model.getLabel()).build();
+
+        try (CloseableHttpResponse response = executeRequest(httpRequest)) {
+            return parseResponse(response, CloudflareImageToTextResponse.class);
+        } catch (IOException e) {
+            throw new CloudflareRequestException(e.getMessage(), e);
+        }
+    }
+
+    public CloudflareObjectDetectionResponse generate(File file, ObjectDetectionModels model) throws CloudflareRequestException {
+        ClassicHttpRequest httpRequest = getBaseRequestBuilder(file, model.getLabel()).build();
+
+        try (CloseableHttpResponse response = executeRequest(httpRequest)) {
+            return parseResponse(response, CloudflareObjectDetectionResponse.class);
         } catch (IOException e) {
             throw new CloudflareRequestException(e.getMessage(), e);
         }
@@ -99,6 +137,30 @@ public class CloudflareClient {
 
         try (CloseableHttpResponse response = executeRequest(httpRequest)) {
             return parseResponse(response, CloudflareSummarizationResponse.class);
+        } catch (IOException e) {
+            throw new CloudflareRequestException(e.getMessage(), e);
+        }
+    }
+
+    public CloudflareTextEmbeddingsResponse generate(CloudflareTextEmbeddingsRequest request, String model) throws CloudflareRequestException {
+        ClassicHttpRequest httpRequest = getBaseRequestBuilder(request, model)
+                .addHeader("Accept", APPLICATION_JSON.getMimeType())
+                .build();
+
+        try (CloseableHttpResponse response = executeRequest(httpRequest)) {
+            return parseResponse(response, CloudflareTextEmbeddingsResponse.class);
+        } catch (IOException e) {
+            throw new CloudflareRequestException(e.getMessage(), e);
+        }
+    }
+
+    private CloudflareTextEmbeddingsResponse generate(CloudflareTextEmbeddingsMultiRequest request, String model) throws CloudflareRequestException {
+        ClassicHttpRequest httpRequest = getBaseRequestBuilder(request, model)
+                .addHeader("Accept", APPLICATION_JSON.getMimeType())
+                .build();
+
+        try (CloseableHttpResponse response = executeRequest(httpRequest)) {
+            return parseResponse(response, CloudflareTextEmbeddingsResponse.class);
         } catch (IOException e) {
             throw new CloudflareRequestException(e.getMessage(), e);
         }

@@ -28,7 +28,7 @@ Add dependency to your `pom.xml` file:
 <dependency>
     <groupId>dev.kovaliv.cloudflare</groupId>
     <artifactId>ai-client</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 </dependency>
 ```
 
@@ -84,6 +84,46 @@ System.out.println(response.getResult().getSummary());
 ```Java
 CloudflareSpeechRecognitionResponse response = client.generate(new File("audio.ogg"), SpeechRecognitionModels.WHISPER);
 System.out.println(response.getResult().getText());
+```
+
+## Image Classification
+
+```Java
+File image = new File("image.jpg");
+CloudflareImageClassificationResponse response = client.generate(image, ImageClassificationModels.RESNET_50);
+```
+
+## Image-to-Text
+
+```Java
+File image = new File("image.jpg");
+CloudflareImageToTextResponse response = client.generate(image, ImageToTextModels.UFORM_GEN2_QWEN_500M);
+System.out.println(response.getResult().getDescription());
+```
+
+## Object Detection
+
+```Java
+File image = new File("image.jpg");
+CloudflareObjectDetectionResponse response = client.generate(image, ObjectDetectionModels.DETR_RESNET_50);
+```
+
+## Text Embedding
+
+With a single text:
+
+```Java
+String text = "Hello, how are you?";
+CloudflareTextEmbeddingsRequest request = new CloudflareTextEmbeddingsRequest(text);
+CloudflareTextEmbeddingsResponse response = client.generate(request, TextEmbeddingsModels.BG_BASE_EN_V1_5);
+```
+
+With multiple texts:
+
+```Java
+List<String> text = List.of("Hello, how are you?", "I am fine, thank you.", "Goodbye!");
+CloudflareTextEmbeddingsMultiRequest request = new CloudflareTextEmbeddingsMultiRequest(text);
+CloudflareTextEmbeddingsResponse response = client.generate(request, TextEmbeddingsModels.BG_BASE_EN_V1_5);
 ```
 
 # Contributing
