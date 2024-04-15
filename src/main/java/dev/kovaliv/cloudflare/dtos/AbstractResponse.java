@@ -6,18 +6,18 @@ import java.util.List;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTextEmbeddingsResponse {
-    private Result result;
+public abstract class AbstractResponse {
+    protected boolean success;
+    protected List<Error> errors;
 
     @Getter
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Result {
-        private List<Double> shape;
-        private List<List<Double>> data;
+    public static class Error {
+        private int code;
+        private String message;
     }
 }

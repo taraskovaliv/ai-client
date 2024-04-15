@@ -13,12 +13,17 @@ to consume Cloudflare's latest and greatest.
 * [x] [Translation](https://developers.cloudflare.com/workers-ai/models/#translation)
 * [x] [Summarization](https://developers.cloudflare.com/workers-ai/models/#summarization)
 * [x] [Speech-to-Text](https://developers.cloudflare.com/workers-ai/models/#automatic-speech-recognition)
+* [x] [Image Classification](https://developers.cloudflare.com/workers-ai/models/#image-classification)
+* [x] [Image-to-Text](https://developers.cloudflare.com/workers-ai/models/#image-to-text)
+* [x] [Object Detection](https://developers.cloudflare.com/workers-ai/models/#object-detection)
+* [x] [Text Embeddings](https://developers.cloudflare.com/workers-ai/models/#text-embeddings)
+* [x] [Text Classification](https://developers.cloudflare.com/workers-ai/models/#text-classification)
 
 # Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Development](#contributing)
+- [Contributing](#contributing)
 
 # Installation
 
@@ -28,7 +33,7 @@ Add dependency to your `pom.xml` file:
 <dependency>
     <groupId>dev.kovaliv.cloudflare</groupId>
     <artifactId>ai-client</artifactId>
-    <version>0.0.4</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -48,8 +53,8 @@ CloudflareClient client = new CloudflareClient(getenv("CLOUDFLARE_ACCOUNT_ID"), 
 
 ```Java
 String prompt = "Hello, how are you?";
-CloudflareTextRequest request = new CloudflareTextRequest(prompt);
-CloudflareTextResponse response = client.generate(request, TextModels.OPENCHAT_3_5_AWQ);
+TextGenerationRequest request = new TextGenerationRequest(prompt);
+TextGenerationResponse response = client.generate(request, TextModel.OPENCHAT_3_5_AWQ);
 System.out.println(response.getResult().getResponse());
 ```
 
@@ -57,16 +62,16 @@ System.out.println(response.getResult().getResponse());
 
 ```Java
 String prompt = "Curly dog";
-CloudflareImageRequest request = new CloudflareImageRequest(prompt);
-File image = client.generate(request, TextToImageModels.STABLE_DIFFUSION_XL_LIGHTNING);
+ImageRequest request = new ImageRequest(prompt);
+File image = client.generate(request, TextToImageModel.STABLE_DIFFUSION_XL_LIGHTNING);
 ```
 
 ## Translation
 
 ```Java
 String text = "Hello, how are you?";
-CloudflareTranslationRequest request = new CloudflareTranslationRequest(text, "en", "es");
-CloudflareTranslationResponse response = client.generate(request, TranslationModels.M2M_100_1_2B);
+TranslationRequest request = new TranslationRequest(text, "en", "es");
+TranslationResponse response = client.generate(request, TranslationModel.M2M_100_1_2B);
 System.out.println(response.getResult().getTranslatedText());
 ```
 
@@ -74,38 +79,35 @@ System.out.println(response.getResult().getTranslatedText());
 
 ```Java
 String text = "Big text";
-CloudflareSummarizationRequest request = new CloudflareSummarizationRequest(text);
-CloudflareSummarizationResponse response = client.generate(request, SummarizationModels.BART_LARGE_CNN);
+SummarizationRequest request = new SummarizationRequest(text);
+SummarizationResponse response = client.generate(request, SummarizationModel.BART_LARGE_CNN);
 System.out.println(response.getResult().getSummary());
 ```
 
 ## Speech-to-Text
 
 ```Java
-CloudflareSpeechRecognitionResponse response = client.generate(new File("audio.ogg"), SpeechRecognitionModels.WHISPER);
+SpeechRecognitionResponse response = client.generate(new File("audio.ogg"), SpeechRecognitionModel.WHISPER);
 System.out.println(response.getResult().getText());
 ```
 
 ## Image Classification
 
 ```Java
-File image = new File("image.jpg");
-CloudflareImageClassificationResponse response = client.generate(image, ImageClassificationModels.RESNET_50);
+ImageClassificationResponse response = client.generate(new File("image.jpg"), ImageClassificationModel.RESNET_50);
 ```
 
 ## Image-to-Text
 
 ```Java
-File image = new File("image.jpg");
-CloudflareImageToTextResponse response = client.generate(image, ImageToTextModels.UFORM_GEN2_QWEN_500M);
+ImageToTextResponse response = client.generate(new File("image.jpg"), ImageToTextModel.UFORM_GEN2_QWEN_500M);
 System.out.println(response.getResult().getDescription());
 ```
 
 ## Object Detection
 
 ```Java
-File image = new File("image.jpg");
-CloudflareObjectDetectionResponse response = client.generate(image, ObjectDetectionModels.DETR_RESNET_50);
+ObjectDetectionResponse response = client.generate(new File("image.jpg"), ObjectDetectionModel.DETR_RESNET_50);
 ```
 
 ## Text Embedding
@@ -114,16 +116,24 @@ With a single text:
 
 ```Java
 String text = "Hello, how are you?";
-CloudflareTextEmbeddingsRequest request = new CloudflareTextEmbeddingsRequest(text);
-CloudflareTextEmbeddingsResponse response = client.generate(request, TextEmbeddingsModels.BG_BASE_EN_V1_5);
+TextEmbeddingsRequest request = new TextEmbeddingsRequest(text);
+TextEmbeddingsResponse response = client.generate(request, TextEmbeddingsModel.BG_BASE_EN_V1_5);
 ```
 
 With multiple texts:
 
 ```Java
 List<String> text = List.of("Hello, how are you?", "I am fine, thank you.", "Goodbye!");
-CloudflareTextEmbeddingsMultiRequest request = new CloudflareTextEmbeddingsMultiRequest(text);
-CloudflareTextEmbeddingsResponse response = client.generate(request, TextEmbeddingsModels.BG_BASE_EN_V1_5);
+TextEmbeddingsMultiRequest request = new TextEmbeddingsMultiRequest(text);
+TextEmbeddingsResponse response = client.generate(request, TextEmbeddingsModel.BG_LARGE_EN_V1_5);
+```
+
+## Text Classification
+
+```Java
+String text = "Hello, how are you?";
+TextClassificationRequest request = new TextClassificationRequest(text);
+TextClassificationResponse response = client.generate(request, TextClassificationModel.DISTILBERT_SST_2_INT8);
 ```
 
 # Contributing

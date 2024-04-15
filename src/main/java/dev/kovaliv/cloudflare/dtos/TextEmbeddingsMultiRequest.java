@@ -9,6 +9,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTextEmbeddingsMultiRequest extends CloudflareAbstractRequest {
+public class TextEmbeddingsMultiRequest extends AbstractRequest {
     private List<String> text;
 }

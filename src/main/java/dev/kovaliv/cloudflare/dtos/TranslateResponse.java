@@ -1,17 +1,16 @@
 package dev.kovaliv.cloudflare.dtos;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTextResponse extends CloudflareAbstractResponse {
+public class TranslateResponse extends AbstractResponse {
     private Result result;
 
     @Getter
@@ -19,6 +18,7 @@ public class CloudflareTextResponse extends CloudflareAbstractResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Result {
-        private String response;
+        @SerializedName("translated_text")
+        private String translatedText;
     }
 }

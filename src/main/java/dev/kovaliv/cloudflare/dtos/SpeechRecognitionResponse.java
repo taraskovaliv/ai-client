@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareSpeechRecognitionResponse extends CloudflareAbstractResponse {
+public class SpeechRecognitionResponse extends AbstractResponse {
     private Result result;
 
     @Getter

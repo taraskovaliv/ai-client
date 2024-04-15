@@ -7,6 +7,6 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareTextEmbeddingsRequest extends CloudflareAbstractRequest {
+public class TextEmbeddingsRequest extends AbstractRequest {
     private String text;
 }

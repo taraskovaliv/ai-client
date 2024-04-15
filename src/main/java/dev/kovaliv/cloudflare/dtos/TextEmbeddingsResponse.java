@@ -2,12 +2,14 @@ package dev.kovaliv.cloudflare.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareSummarizationResponse extends CloudflareAbstractResponse {
+public class TextEmbeddingsResponse extends AbstractResponse {
     private Result result;
 
     @Getter
@@ -15,6 +17,7 @@ public class CloudflareSummarizationResponse extends CloudflareAbstractResponse 
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Result {
-        private String summary;
+        private List<Double> shape;
+        private List<List<Double>> data;
     }
 }

@@ -8,14 +8,14 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudflareImageRequest extends CloudflareAbstractRequest {
+public class TextToImageRequest extends AbstractRequest {
     private String prompt;
     @SerializedName("num_steps")
     private int numSteps = 20;
     private double strength = 1.0;
     private double guidance = 7.5;
 
-    public CloudflareImageRequest(String prompt) {
+    public TextToImageRequest(String prompt) {
         this.prompt = prompt;
     }
 }
