@@ -34,13 +34,13 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <gson.version>2.10.1</gson.version>
-        <httpclient.version>5.3.1</httpclient.version>
+        <gson.version>2.11.0</gson.version>
+        <httpclient.version>5.4-alpha2</httpclient.version>
         <lombok.version>1.18.32</lombok.version>
         <central-publishing.version>0.4.0</central-publishing.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
-        <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.7.0</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
     </properties>
 
     <dependencies>
