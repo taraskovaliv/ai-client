@@ -35,7 +35,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <gson.version>2.11.0</gson.version>
-        <httpclient.version>5.4-alpha2</httpclient.version>
+        <httpclient.version>5.4-beta1</httpclient.version>
         <lombok.version>1.18.32</lombok.version>
         <central-publishing.version>0.4.0</central-publishing.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
