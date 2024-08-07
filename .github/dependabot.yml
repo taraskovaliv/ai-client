@@ -3,6 +3,7 @@ updates:
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     ignore:
+      - dependency-name: org.apache.maven.plugins:maven-gpg-plugin:*
       - dependency-name: org.apache.maven.plugins:maven-compiler-plugin:*
