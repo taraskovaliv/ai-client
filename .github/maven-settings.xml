@@ -1,0 +1,20 @@
+<settings>
+    <servers>
+        <server>
+            <id>central</id>
+            <username>${env.REPO_USER}</username>
+            <password>${env.REPO_PASSWORD}</password>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <id>publish</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <gpg.passphrase>${env.GH_PASSPHRASE}</gpg.passphrase>
+            </properties>
+        </profile>
+    </profiles>
+</settings>
