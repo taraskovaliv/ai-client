@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dev.kovaliv.cloudflare</groupId>
-    <artifactId>ai-client</artifactId>
+    <groupId>dev.kovaliv</groupId>
+    <artifactId>ai-client-cloudflare</artifactId>
     <version>0.1.1</version>
     <url>https://github.com/taraskovaliv/ai-client</url>
     <description>A Java client for the Cloudflare Workers AI REST API</description>
