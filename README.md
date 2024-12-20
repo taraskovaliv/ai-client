@@ -4,7 +4,7 @@ Cloudflare is testing its [Workers AI API](https://developers.cloudflare.com/wor
 Hopefully this project makes it easier for java developers 
 to consume Cloudflare's latest and greatest.
 
-![Maven Central Version](https://img.shields.io/maven-central/v/dev.kovaliv.cloudflare/ai-client)
+![Maven Central Version](https://img.shields.io/maven-central/v/dev.kovaliv/ai-client-cloudflare)
 ![GitHub License](https://img.shields.io/github/license/taraskovaliv/ai-client)
 
 # Supported features
