@@ -34,7 +34,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <gson.version>2.12.0</gson.version>
+        <gson.version>2.12.1</gson.version>
         <httpclient.version>5.4.1</httpclient.version>
         <lombok.version>1.18.36</lombok.version>
         <central-publishing.version>0.7.0</central-publishing.version>
