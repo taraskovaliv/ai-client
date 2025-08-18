@@ -39,7 +39,7 @@
         <lombok.version>1.18.38</lombok.version>
         <central-publishing.version>0.8.0</central-publishing.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
-        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.11.3</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
     </properties>
 
