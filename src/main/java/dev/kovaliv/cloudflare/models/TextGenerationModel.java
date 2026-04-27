@@ -15,20 +15,28 @@ public class TextGenerationModel extends AbstractModel {
     public static final TextGenerationModel LLAMA_3_2_11B_VISION_INSTRUCT = new TextGenerationModel("@cf/meta/llama-3.2-11b-vision-instruct");
     public static final TextGenerationModel LLAMA_3_2_1B_INSTRUCT = new TextGenerationModel("@cf/meta/llama-3.2-1b-instruct");
     public static final TextGenerationModel LLAMA_3_2_3B_INSTRUCT = new TextGenerationModel("@cf/meta/llama-3.2-3b-instruct");
+    public static final TextGenerationModel LLAMA_3_3_70B_INSTRUCT_FP8_FAST = new TextGenerationModel("@cf/meta/llama-3.3-70b-instruct-fp8-fast");
+    public static final TextGenerationModel LLAMA_4_SCOUT_17B_16E_INSTRUCT = new TextGenerationModel("@cf/meta/llama-4-scout-17b-16e-instruct");
+    public static final TextGenerationModel LLAMA_GUARD_3_8B = new TextGenerationModel("@cf/meta/llama-guard-3-8b");
 
     public static final TextGenerationModel MISTRAL_7B_INSTRUCT_V0_1 = new TextGenerationModel("@cf/mistral/mistral-7b-instruct-v0.1");
     public static final TextGenerationModel MISTRAL_7B_INSTRUCT_V0_2 = new TextGenerationModel("@hf/mistral/mistral-7b-instruct-v0.2");
     public static final TextGenerationModel MISTRAL_7B_INSTRUCT_AWQ_V0_1 = new TextGenerationModel("@hf/thebloke/mistral-7b-instruct-v0.1-awq");
     public static final TextGenerationModel MISTRAL_7B_INSTRUCT_LORA_V0_2 = new TextGenerationModel("@cf/mistral/mistral-7b-instruct-v0.2-lora");
+    public static final TextGenerationModel MISTRAL_SMALL_3_1_24B_INSTRUCT = new TextGenerationModel("@cf/mistralai/mistral-small-3.1-24b-instruct");
+    public static final TextGenerationModel MIXTRAL_8X7B_INSTRUCT_V0_1_AWQ = new TextGenerationModel("@cf/mistral/mixtral-8x7b-instruct-v0.1-awq");
 
     public static final TextGenerationModel GEMMA_2B_IT_LORA = new TextGenerationModel("@cf/google/gemma-2b-it-lora");
     public static final TextGenerationModel GEMMA_7B_IT_LORA = new TextGenerationModel("@cf/google/gemma-7b-it-lora");
     public static final TextGenerationModel GEMMA_7B_IT = new TextGenerationModel("@hf/google/gemma-7b-it");
+    public static final TextGenerationModel GEMMA_3_12B_IT = new TextGenerationModel("@cf/google/gemma-3-12b-it");
 
     public static final TextGenerationModel DEEPSEEK_MATH_7B_BASE = new TextGenerationModel("@cf/deepseek-ai/deepseek-math-7b-base");
     public static final TextGenerationModel DEEPSEEK_MATH_7B_INSTRUCT = new TextGenerationModel("@cf/deepseek-ai/deepseek-math-7b-instruct");
     public static final TextGenerationModel DEEPSEEK_CODER_6_7B_BASE_AWQ = new TextGenerationModel("@hf/thebloke/deepseek-coder-6.7b-base-awq");
     public static final TextGenerationModel DEEPSEEK_CODER_6_7B_INSTRUCT_AWQ = new TextGenerationModel("@hf/thebloke/deepseek-coder-6.7b-instruct-awq");
+    public static final TextGenerationModel DEEPSEEK_CODER_7B_INSTRUCT_V1_5 = new TextGenerationModel("@cf/deepseek-ai/deepseek-coder-7b-instruct-v1.5");
+    public static final TextGenerationModel DEEPSEEK_R1_DISTILL_QWEN_32B = new TextGenerationModel("@cf/deepseek-ai/deepseek-r1-distill-qwen-32b");
 
     public static final TextGenerationModel STARLING_LM_7B_BETA = new TextGenerationModel("@hf/nexusflow/starling-lm-7b-beta");
 
@@ -62,6 +70,13 @@ public class TextGenerationModel extends AbstractModel {
     public static final TextGenerationModel QWEN_1_5_1_8B_CHAT = new TextGenerationModel("@cf/qwen/qwen1.5-1.8b-chat");
     public static final TextGenerationModel QWEN_1_5_7B_CHAT_AWQ = new TextGenerationModel("@cf/qwen/qwen1.5-7b-chat-awq");
     public static final TextGenerationModel QWEN_1_5_14B_CHAT_AWQ = new TextGenerationModel("@cf/qwen/qwen1.5-14b-chat-awq");
+    public static final TextGenerationModel QWEN_2_5_CODER_32B_INSTRUCT = new TextGenerationModel("@cf/qwen/qwen2.5-coder-32b-instruct");
+    public static final TextGenerationModel QWQ_32B = new TextGenerationModel("@cf/qwen/qwq-32b");
+    public static final TextGenerationModel QWEN_3_30B_A3B_FP8 = new TextGenerationModel("@cf/qwen/qwen3-30b-a3b-fp8");
+
+    public static final TextGenerationModel KIMI_K2_5 = new TextGenerationModel("@cf/moonshotai/kimi-k2.5");
+
+    public static final TextGenerationModel GPT_OSS_120B = new TextGenerationModel("@cf/openai/gpt-oss-120b");
 
     public static final TextGenerationModel UNA_CYBERTRON_7B_V2_BF16 = new TextGenerationModel("@cf/fblgit/una-cybertron-7b-v2-bf16");
 

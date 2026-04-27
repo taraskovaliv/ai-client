@@ -4,6 +4,8 @@ public class TextEmbeddingsModel extends AbstractModel {
     public static final TextEmbeddingsModel BG_BASE_EN_V1_5 = new TextEmbeddingsModel("@cf/baai/bge-base-en-v1.5");
     public static final TextEmbeddingsModel BG_LARGE_EN_V1_5 = new TextEmbeddingsModel("@cf/baai/bge-large-en-v1.5");
     public static final TextEmbeddingsModel BG_SMALL_EN_V1_5 = new TextEmbeddingsModel("@cf/baai/bge-small-en-v1.5");
+    public static final TextEmbeddingsModel BG_M3 = new TextEmbeddingsModel("@cf/baai/bge-m3");
+    public static final TextEmbeddingsModel ALL_MINILM_L6_V2 = new TextEmbeddingsModel("@hf/sentence-transformers/all-minilm-l6-v2");
 
     public TextEmbeddingsModel(String label) {
         super(label);
